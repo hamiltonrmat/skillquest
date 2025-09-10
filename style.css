@@ -5,131 +5,81 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: #0D1117; /* Fond très sombre, comme GitHub */
-    color: #E0E0E0; /* Texte blanc cassé, plus doux pour les yeux */
-    
-    /* Centrage du contenu */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    overflow: hidden; /* Empêche le défilement */
-    position: relative; /* Nécessaire pour positionner les cercles de fond */
-}
-
-/* --- Effet de fond "Aurora" --- */
-.blur-circle {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(120px); /* Le flou qui crée l'effet */
-    z-index: -1;
-    animation: move 20s infinite alternate;
-}
-
-.circle1 {
-    width: 400px;
-    height: 400px;
-    background-color: rgba(79, 70, 229, 0.3); /* Indigo */
-    top: -50px;
-    left: -100px;
-}
-
-.circle2 {
-    width: 350px;
-    height: 350px;
-    background-color: rgba(139, 92, 246, 0.3); /* Violet */
-    bottom: -80px;
-    right: -120px;
-    animation-delay: -10s; /* Décale l'animation pour un effet asynchrone */
-}
-
-/* Animation pour faire "respirer" le fond */
-@keyframes move {
-    from {
-        transform: translate(0, 0) scale(1);
-    }
-    to {
-        transform: translate(100px, 50px) scale(1.2);
-    }
-}
-
-
-/* --- Conteneur principal "Glassmorphism" --- */
-.glass-container {
-    background: rgba(23, 27, 38, 0.7); /* Fond semi-transparent */
-    backdrop-filter: blur(15px); /* L'effet de verre dépoli */
-    -webkit-backdrop-filter: blur(15px); /* Pour la compatibilité Safari */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    padding: 40px 50px;
+html, body {
+    height: 100%; /* Important pour que le centrage vertical fonctionne */
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f2f5; /* Une couleur de fond douce */
+    color: #333;
+    display: flex; /* Utilise Flexbox pour centrer le contenu */
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
     text-align: center;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    max-width: 800px;
+}
+
+/* --- Conteneur principal --- */
+.container {
+    padding: 40px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 800px; /* Largeur maximale pour les grands écrans */
     width: 90%;
 }
 
 h1 {
-    font-size: 2.8em;
-    font-weight: 700;
-    color: #FFFFFF;
-    margin-bottom: 15px;
-    /* Effet de dégradé sur le texte */
-    background: linear-gradient(90deg, #c7d2fe, #a5b4fc);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #1a237e; /* Une couleur sombre et pro */
 }
 
 p {
     font-size: 1.1em;
-    color: #a0aec0; /* Gris clair */
+    color: #555;
     margin-bottom: 40px;
 }
 
 /* --- Grille pour les boutons --- */
 .button-grid {
     display: grid;
+    /* Crée 3 colonnes sur les grands écrans, et 2 sur les plus petits */
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 20px; /* Espace entre les boutons */
 }
 
-/* --- Style des boutons modernes --- */
+/* --- Style des boutons --- */
 .service-button {
-    background: rgba(255, 255, 255, 0.05); /* Très subtil */
-    color: #f0f0f0;
+    display: block;
+    padding: 20px;
+    background-color: #3949ab; /* Couleur principale des boutons */
+    color: white;
     text-decoration: none;
-    padding: 18px;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 1.1em;
     font-weight: 600;
-    font-size: 1em;
-    transition: all 0.3s ease;
+    border-radius: 8px;
+    transition: transform 0.2s ease-in-out, background-color 0.2s ease; /* Animation minime */
 }
 
-/* --- Effet au survol : illumination et léger soulèvement --- */
+/* --- Effet au survol de la souris --- */
 .service-button:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-5px); /* Effet de soulèvement */
-    box-shadow: 0 0 20px rgba(79, 70, 229, 0.4); /* Lueur de couleur */
+    background-color: #1a237e; /* Couleur plus foncée au survol */
+    transform: scale(1.05); /* Agrandit légèrement le bouton */
 }
 
 /* --- Adaptation pour les écrans mobiles --- */
 @media (max-width: 768px) {
     .button-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr); /* 2 colonnes sur tablette */
     }
     h1 {
-        font-size: 2.2em;
-    }
-    .glass-container {
-        padding: 30px;
+        font-size: 2em;
     }
 }
 
 @media (max-width: 480px) {
     .button-grid {
         grid-template-columns: 1fr; /* 1 seule colonne sur mobile */
+    }
+    .container {
+        padding: 20px;
     }
 }
